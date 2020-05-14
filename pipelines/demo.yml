@@ -1,0 +1,21 @@
+---
+jobs:
+- name: nefarious
+  plan:
+    - task: something simply
+      config:
+        platform: linux
+        image_resource:
+          type: docker-image
+          source:
+            repository: alpine
+            tag: 3.7
+        run:
+          path: /bin/sh
+          args:
+            - -c
+            - |
+                apk update >/dev/null 2>&1
+                apk add curl jq >/dev/null 2>&1
+                echo
+                echo "Hello, world!"
